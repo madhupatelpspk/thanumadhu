@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Thanasri & Madhu: Love Journey Live Counter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Added for mobile scaling -->
+  <style>
+    body {
+      background: linear-gradient(135deg, #f8ffae 0%, #43c6ac 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    .container {
+      background: rgba(255,255,255,0.8);
+      padding: 2em 3em;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(67, 198, 172, 0.2);
+      text-align: center;
+      max-width: 90vw;
+      margin: 0 1em;
+    }
+
+    h1 {
+      color: #ff5e62;
+      font-size: 2.5em;
+      margin-bottom: 0.2em;
+      letter-spacing: 2px;
+    }
+
+    h2 {
+      color: #43c6ac;
+      margin-top: 0;
+      font-size: 1.5em;
+      font-weight: 500;
+    }
+
+    .counter {
+      font-size: 2em;
+      font-weight: bold;
+      color: #222;
+      margin-top: 1.2em;
+      letter-spacing: 2px;
+      word-break: break-all;
+    }
+
+    .label {
+      color: #888;
+      font-size: 1em;
+      margin-top: 1em;
+    }
+
+    /* Mobile styles */
+    @media (max-width: 600px) {
+      body {
+        height: auto;
+        min-height: 100vh;
+        justify-content: flex-start;
+      }
+      .container {
+        padding: 1em 0.5em;
+        border-radius: 12px;
+        box-shadow: 0 2px 16px rgba(67, 198, 172, 0.18);
+      }
+      h1 {
+        font-size: 1.4em;
+        margin-bottom: 0.4em;
+      }
+      h2 {
+        font-size: 1em;
+      }
+      .counter {
+        font-size: 1em;
+      }
+      .label {
+        font-size: 0.85em;
+      }
+    }
+    @media (max-width: 400px) {
+      h1 {
+        font-size: 1em;
+      }
+      .counter {
+        font-size: 0.9em;
+      }
+      .container {
+        padding: 0.5em 0.2em;
+        min-width: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Thanasri & Madhu</h1>
+    <h2>Love you mummy gaa ♥️🫂</h2>
+    <div class="counter" id="love-journey-counter">
+      Loading...
+    </div>
+    <div class="label">
+      Since: May 16, 2025
+    </div>
+  </div>
+  <script>
+    function updateCounter() {
+      // Set the start date and time
+      const startDate = new Date('2025-05-16T00:00:00Z'); // UTC
+      const now = new Date();
+
+      // Calculate the difference
+      let diff = Math.max(now - startDate, 0);
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      diff = diff % (1000 * 60 * 60 * 24);
+
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      diff = diff % (1000 * 60 * 60);
+
+      const minutes = Math.floor(diff / (1000 * 60));
+      diff = diff % (1000 * 60);
+
+      const seconds = Math.floor(diff / 1000);
+
+      document.getElementById('love-journey-counter').textContent =
+        `${days} Days : ${hours} Hours : ${minutes} Minutes : ${seconds} Seconds`;
+    }
+
+    setInterval(updateCounter, 1000);
+    updateCounter();
+  </script>
+</body>
+</html>
