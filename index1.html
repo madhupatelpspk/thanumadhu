@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Photo Gallery (Password Protected)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #eee;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 24px;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.1);
+      border-radius: 10px;
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    #password-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 40px 0;
+    }
+    #password-form input[type=password] {
+      padding: 7px 10px;
+      font-size: 16px;
+      margin-bottom: 16px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      width: 220px;
+    }
+    #password-form button {
+      padding: 8px 14px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      background: #4CAF50;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    #password-form button:hover {
+      background: #388E3C;
+    }
+    #error-message {
+      color: #F44336;
+      font-weight: bold;
+      margin-top: 12px;
+      text-align: center;
+    }
+    .gallery {
+      display: none;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 24px;
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: 7px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      transition: transform 0.2s;
+    }
+    .gallery img:hover {
+      transform: scale(1.07);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Protected Photo Gallery</h2>
+    <form id="password-form">
+      <input type="password" id="password" placeholder="Enter password" required>
+      <button type="submit">Unlock Gallery</button>
+      <div id="error-message"></div>
+    </form>
+    <div class="gallery" id="gallery">
+      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" alt="Photo 1">
+      <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca" alt="Photo 2">
+      <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308" alt="Photo 3">
+      <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e" alt="Photo 4">
+      <img src="https://images.unsplash.com/photo-1508780709619-79562169bc64" alt="Photo 5">
+      <img src="https://images.unsplash.com/photo-1519985176271-adb1088fa94c" alt="Photo 6">
+    </div>
+  </div>
+  <script>
+    // CHANGE THIS PASSWORD
+    const PASSWORD = "gallery123";
+    const form = document.getElementById('password-form');
+    const gallery = document.getElementById('gallery');
+    const errorMsg = document.getElementById('error-message');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const userInput = document.getElementById('password').value;
+      if (userInput === PASSWORD) {
+        form.style.display = "none";
+        gallery.style.display = "grid";
+        errorMsg.textContent = "";
+      } else {
+        errorMsg.textContent = "Wrong password. Try again.";
+        document.getElementById('password').value = "";
+      }
+    });
+  </script>
+</body>
+</html>
