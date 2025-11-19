@@ -98,11 +98,7 @@
     <div class="names">Thanasri & Madhu</div>
     <div class="since">Since May 16, 2025</div>
     <div id="counter">Loading...</div>
-    <div id="whatsapp-parser">
-      <label for="chatfile" class="btn">Parse WhatsApp Chat</label>
-      <input type="file" id="chatfile" accept=".txt" style="display: none;">
-      <div id="wa-summary"></div>
-    </div>
+        </div>
   </div>
   <script>
     // Love Journey Counter
@@ -132,34 +128,4 @@
     updateCounter();
     setInterval(updateCounter, 1000);
 
-    // WhatsApp Chat Parser
-    const chatfile = document.getElementById('chatfile');
-    const waSummary = document.getElementById('wa-summary');
-    document.querySelector('label[for="chatfile"]').onclick = () => chatfile.click();
-
-    chatfile.addEventListener('change', function(e) {
-      const file = e.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = function(evt) {
-        const text = evt.target.result;
-        // Very basic parsing: count messages & show first/last
-        // WhatsApp exported chat format lines start with date, so split by lines with a date pattern
-        const lines = text.split(/\r?\n/);
-        // Typical line: "11/19/25, 11:51 AM - Person: Message"
-        const msgLines = lines.filter(line => /^\d{1,2}\/\d{1,2}\/\d{2,4},/.test(line));
-        if (msgLines.length === 0) {
-          waSummary.innerHTML = "No messages found or not a WhatsApp chat export file.";
-          return;
-        }
-        waSummary.innerHTML =
-          `<strong>WhatsApp Chat Summary</strong><br>` +
-          `Total messages: <b>${msgLines.length}</b><br>` +
-          `First msg: <br><i>${msgLines[0]}</i><br>` +
-          `Last msg: <br><i>${msgLines[msgLines.length - 1]}</i>`;
-      };
-      reader.readAsText(file);
-    });
-  </script>
-</body>
-</html>
+    
